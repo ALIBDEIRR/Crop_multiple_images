@@ -3,6 +3,9 @@ import os
 import tkinter as tk
 from tkinter import filedialog, messagebox
 
+"""Author ALI BDEIR : Masters in Robotics and Control"""
+
+
 
 def select_roi(image):
     cv2.imshow('Select ROI', image)
@@ -18,11 +21,10 @@ def crop_image(image, roi, save_path):
 
 def select_images_and_crop():
     root = tk.Tk()
-    root.withdraw()  # Hide the root window
+    root.withdraw()
 
     file_paths = filedialog.askopenfilenames()
     if file_paths:
-        # Confirm image selection
         if not messagebox.askokcancel("Confirm Image Selection", "Are you sure you want to proceed with these images?"):
             return
 
@@ -33,13 +35,10 @@ def select_images_and_crop():
             return
 
         roi = select_roi(first_image)
-
-        # Ask for the directory to save cropped images
         save_dir = filedialog.askdirectory(title="Select Directory to Save Cropped Images")
         if not save_dir:
-            return  # User canceled the directory selection
+            return
 
-        # Confirm saving cropped images
         if not messagebox.askokcancel("Save Cropped Images", "Save images with the selected ROI?"):
             return
 
